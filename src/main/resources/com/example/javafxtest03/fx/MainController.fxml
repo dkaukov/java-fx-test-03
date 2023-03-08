@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import org.controlsfx.control.StatusBar?>
+<?import de.gsi.chart.axes.spi.DefaultNumericAxis?>
+<?import de.gsi.chart.plugins.Zoomer?>
+<?import de.gsi.chart.renderer.spi.ReducingLineRenderer?>
+<?import de.gsi.chart.XYChart?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+<?import de.gsi.chart.axes.spi.LogarithmicAxis?>
+<?import de.gsi.chart.axes.spi.NumericAxis?>
+<?import de.gsi.chart.axes.spi.LinearAxis?>
+<?import de.gsi.chart.plugins.EditAxis?>
+<?import de.gsi.chart.plugins.CrosshairIndicator?>
+<?import de.gsi.chart.plugins.XValueIndicator?>
+<?import de.gsi.chart.plugins.ParameterMeasurements?>
+<?import de.gsi.chart.renderer.spi.ErrorDataSetRenderer?>
+<?import de.gsi.chart.renderer.spi.HistoryDataSetRenderer?>
+<?import de.gsi.chart.renderer.spi.HistogramRenderer?>
+<?import de.gsi.chart.plugins.YWatchValueIndicator?>
+<BorderPane xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" prefWidth="2000" prefHeight="400" fx:controller="com.example.javafxtest03.fx.MainController">
+  <top>
+    <MenuBar>
+      <Menu fx:id="mMain" text="Main">
+        <MenuItem fx:id="addCos" text="Add Cosine Dataset"/>
+        <MenuItem fx:id="addGauss" text="Add Gauss Dataset"/>
+        <MenuItem fx:id="addRandom" text="Add Random Walk Dataset"/>
+        <MenuItem fx:id="clearChart" text="Clear all Chart Datasets"/>
+        <SeparatorMenuItem />
+        <MenuItem fx:id="mExit" text="Exit"/>
+      </Menu>
+      <Menu fx:id="mAbout" text="About">
+      </Menu>
+    </MenuBar>
+  </top>
+  <center>
+    <XYChart fx:id="chart" title="FFT" >
+      <axes>
+        <DefaultNumericAxis side="BOTTOM" name="Frequency" autoRanging="true" autoUnitScaling="true" unit="Hz" />
+        <DefaultNumericAxis prefWidth="70" fx:id="powerAxis" side="LEFT" name="Power"  autoRanging="false" min="-150" max="-40" unit="dBm" logAxis="false">
+        </DefaultNumericAxis>
+      </axes>
+      <plugins>
+        <Zoomer axisMode="X" />
+        <EditAxis  />
+        <ParameterMeasurements/>
+      </plugins>
+      <renderers>
+        <ErrorDataSetRenderer fx:id="errorDataSetRenderer" drawMarker="false" parallelImplementation="true" polyLineStyle="STAIR_CASE" minRequiredReductionSize="2048000">
+        </ErrorDataSetRenderer>
+      </renderers>
+    </XYChart>
+  </center>
+  <bottom>
+    <StatusBar fx:id="statusBar" text="CPU" progress="0.0" >
+    </StatusBar>
+  </bottom>
+</BorderPane>

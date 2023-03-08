@@ -1,0 +1,8 @@
+spring.main.web-application-type: none
+
+tci:
+  address: ws://localhost:40001
+
+logging:
+  level:
+    org.springframework.web.socket: TRACE
